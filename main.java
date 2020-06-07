@@ -1,6 +1,4 @@
-/*
- * Decompiled with CFR 0.137.
- */
+//Imports
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Container;
@@ -18,8 +16,10 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+//The Main Class [The Only One]
 public class main {
     public static void main(String[] args) {
+        //Creating The Components
         JFrame frame = new JFrame("OpnLnkXTms");
         JPanel f_pane = new JPanel();
         JTextField url = new JTextField();
@@ -31,6 +31,7 @@ public class main {
         		+ " Is To Enter/Paste The Link On The Field Provided, And Enter The Number Of Tabs You Want To Open.\n\n"
         		+ " [NOTE] -> Always Enter The Link In This Format: [http://www.0000.000] And Always Provide A Number"
         		+ "Of Tab;\n \t Otherwise, The Program Will Crash [!]");
+        //Setting The Sizes And Positions Of Components
         f_pane.setSize(700, 350);
         f_pane.setLayout(null);
         f_pane.add(url);
@@ -57,16 +58,17 @@ public class main {
         but.setBounds(300, 220, 100, 50);
         but.setBackground(Color.green);
         but.setForeground(Color.darkGray);
+        //The Core Of The Program
         but.addActionListener(x -> {
             String txt = new String(url.getText());
-            int nber = Integer.parseInt(times.getText());
-            for (int y = 1; y <= nber; ++y) {
+            int nber = Integer.parseInt(times.getText()); //Cause A Int Can't Receive Directly The Value Of A Field [Considerec As Str]
+            for (int y = 1; y <= nber; ++y) { //The Loop Will Reapeat The Instructions nber Number Of Times
                 try {
-                    URI Link = new URI(txt);
-                    Desktop.getDesktop().browse(Link);
+                    URI Link = new URI(txt); //The URI Type Var Is Receiving The Value Of The String Txt, Put As Parameter 
+                    Desktop.getDesktop().browse(Link); //The Most Important Line, It Opens The URI In An Instance Of The Default Browser
                     continue;
                 }
-                catch (IOException | URISyntaxException w) {
+                catch (IOException | URISyntaxException w) { //And We Prevent Crashs
                     w.printStackTrace();
                 }
             }
